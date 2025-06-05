@@ -1,0 +1,17 @@
+name: "development-build-nonprod"
+on:
+  push:
+    branches:
+      - development
+  pull_request:
+    branches:
+      - development
+jobs:
+    build:
+        name: "Build Spark Application"
+        runs-on: ubuntu-latest
+        steps:
+        - name: "Checkout code"
+          uses: actions/checkout@v3
+        - name: "trigger build"
+          run: "echo 'Building Spark Application...'"
