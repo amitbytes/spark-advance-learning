@@ -2,10 +2,10 @@ name: "development-build-nonprod"
 on:
   push:
     branches:
-      - development
+      - master
   pull_request:
     branches:
-      - development
+      - master
 jobs:
     build:
         name: "Build Spark Application"
