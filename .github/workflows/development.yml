@@ -19,7 +19,7 @@ jobs:
         - name: "trigger build"
           run: "echo 'Building Spark Application...'"
         - name: "Post build action"
-          run: "echo 'executing post build actions'"
+          run: "echo '${{github.event_name}} - executing post build actions'"
     test:
         name: "Test"
         runs-on: ubuntu-latest
