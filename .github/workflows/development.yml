@@ -20,3 +20,23 @@ jobs:
           run: "echo 'Building Spark Application...'"
         - name: "Post build action"
           run: "echo 'executing post build actions'"
+    test:
+        name: "Test"
+        runs-on: ubuntu-latest
+        steps:
+        - name: "Checkout code"
+          run : "echo 'Checking out code...'"
+        - name: "trigger test"
+          run: "echo 'Testing Spark Application...'"
+        - name: "Post test action"
+          run: "echo 'executing post test actions'"
+    deploy:
+        name: "Deploy"
+        runs-on: ubuntu-latest
+        steps:
+        - name: "Checkout code"
+          run : "echo 'Checking out code...'"
+        - name: "trigger deploy"
+          run: "echo 'Deploying Spark Application...'"
+        - name: "Post deploy action"
+          run: "echo 'executing post deploy actions'"
