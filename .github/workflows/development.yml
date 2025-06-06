@@ -23,6 +23,7 @@ jobs:
     test:
         name: "Test"
         runs-on: ubuntu-latest
+        needs: build
         steps:
         - name: "Checkout code"
           run : "echo 'Checking out code...'"
@@ -33,6 +34,7 @@ jobs:
     deploy:
         name: "Deploy"
         runs-on: ubuntu-latest
+        needs: test
         steps:
         - name: "Checkout code"
           run : "echo 'Checking out code...'"
