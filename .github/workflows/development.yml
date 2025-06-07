@@ -30,7 +30,7 @@ jobs:
         - name: "trigger test"
           run: "echo 'Testing Spark Application...'"
         - name: "Post test action"
-          run: "echo '${{toJASON(github)}}'"
+          run: "echo '${{ toJson(github) }}'"
     deploy:
         name: "Deploy"
         runs-on: ubuntu-latest
