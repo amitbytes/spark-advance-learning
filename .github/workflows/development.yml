@@ -7,8 +7,6 @@ on:
     branches:
       - master
   workflow_dispatch:
-    branches:
-      - master
 jobs:
     build:
         name: "Build"
@@ -27,6 +25,8 @@ jobs:
         steps:
         - name: "Checkout code"
           run : "echo 'Checking out code...'"
+        - name: "operating system inspection"
+          run: "echo 'Operating system is ${{ runner.os }}'"
         - name: "trigger test"
           run: "echo 'Testing Spark Application...'"
         - name: "Post test action"
