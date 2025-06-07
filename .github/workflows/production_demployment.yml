@@ -1,0 +1,27 @@
+name: "production deploymnent workflow"
+on: 
+    workflow_dispatch:
+jobs:
+    build:
+        name: "Build"
+        runs-on: ubuntu-latest
+        steps:
+        - name: "Checkout code"
+          run: "echo 'Checking out code...'"
+        - name: "trigger build"
+          run: "echo 'Building Spark Application...'"
+        - name: "Post build action"
+          run: "echo '${{github.event_name}} - executing post build actions'"
+    test:
+        name: "Test"
+        runs-on: ubuntu-latest
+        needs: build
+        steps:
+        - name: "Checkout code"
+          run : "echo 'Checking out code...'"
+        - name: "operating system inspection"
+          run: "echo 'Operating system is ${{ runner.os }}'"
+        - name: "trigger test"
+          run: "echo 'Testing Spark Application...'"
+        - name: "Post test action"
+          run: "echo '${{ toJson(github) }}'"
