@@ -14,7 +14,8 @@ object App {
       .master("local[*]")
       .getOrCreate()
     try {
-      println(f"Spark version: ${spark.version}")
+      println(f"Spark-version: ${spark.version}")
+      logger.error(s"spark---version: ${spark.version}")
     } catch {
       case e: Exception =>
         logger.error("An error occurred while running the application", e)
