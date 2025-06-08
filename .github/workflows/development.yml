@@ -25,7 +25,7 @@ jobs:
             java-version: '11'
             distribution: 'temurin'
             chace: 'maven'
-        - name: "trigger build for ${WORKFLOW_NAME} ${JOB_NAME}"
+        - name: "trigger build for $WORKFLOW_NAME $JOB_NAME"
           run: mvn -B clean package -DskipTests --file pom.xml
         - name: "Upload build artifacts"
           uses: actions/upload-artifact@v4
@@ -44,7 +44,7 @@ jobs:
         - name: "operating system inspection"
           run: "echo 'Operating system is ${{ runner.os }}'"
         - name: "trigger test"
-          run: "echo 'Testing ${WORKFLOW_NAME} ${JOB_NAME} Spark Application...'"
+          run: "echo 'Testing $WORKFLOW_NAME - $JOB_NAME Spark Application...'"
         - name: "Post test action"
           run: "echo '${{ toJson(github) }}'"
     deploy:
@@ -55,6 +55,6 @@ jobs:
         - name: "Checkout code"
           run : "echo 'Checking out code...'"
         - name: "trigger deploy"
-          run: "echo 'Deploying ${WORKFLOW_NAME}...'"
+          run: "echo 'Deploying $WORKFLOW_NAME - ${{github.job.deploy.name}} ... '"
         - name: "Post deploy action"
           run: "echo 'executing post deploy actions'"
