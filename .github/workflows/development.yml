@@ -7,8 +7,13 @@ on:
     branches:
       - master
   workflow_dispatch:
+env:
+  WORKFLOW_NAME: "spark-application-workflow-non-prod"
+  JAVA_VERSION: '11'
 jobs:
     build:
+        env:
+          JOB_NAME: "build"
         name: "Build"
         runs-on: ubuntu-latest
         steps:
@@ -20,7 +25,7 @@ jobs:
             java-version: '11'
             distribution: 'temurin'
             chace: 'maven'
-        - name: "trigger build"
+        - name: "trigger build for ${WORKFLOW_NAME} ${JOB_NAME}"
           run: mvn -B clean package -DskipTests --file pom.xml
         - name: "Upload build artifacts"
           uses: actions/upload-artifact@v4
@@ -28,6 +33,8 @@ jobs:
             name: "spark-application-artifact"
             path: target/*.jar
     test:
+        env:
+          JOB_NAME: "test"
         name: "Test"
         runs-on: ubuntu-latest
         needs: build
@@ -37,7 +44,7 @@ jobs:
         - name: "operating system inspection"
           run: "echo 'Operating system is ${{ runner.os }}'"
         - name: "trigger test"
-          run: "echo 'Testing Spark Application...'"
+          run: "echo 'Testing ${WORKFLOW_NAME} ${JOB_NAME} Spark Application...'"
         - name: "Post test action"
           run: "echo '${{ toJson(github) }}'"
     deploy:
@@ -48,6 +55,6 @@ jobs:
         - name: "Checkout code"
           run : "echo 'Checking out code...'"
         - name: "trigger deploy"
-          run: "echo 'Deploying Spark Application...'"
+          run: "echo 'Deploying ${WORKFLOW_NAME}...'"
         - name: "Post deploy action"
           run: "echo 'executing post deploy actions'"
