@@ -11,7 +11,16 @@ env:
   WORKFLOW_NAME: "spark-application-workflow-non-prod"
   JAVA_VERSION: '11'
 jobs:
+    credentials:
+        name: "Credentials setup"
+        runs-on: ubuntu-latest
+        steps:
+          - name: "Reading repository secret"
+            run: |
+              echo "Readding secret from the repository secret"
+              echo "--username: ${{secrets.DB_USERNAME}} --password: ${{secrets.DB_PASSWORD}}"
     build:
+        needs: credentials
         env:
           JOB_NAME: "build"
         name: "Build"
