@@ -24,7 +24,7 @@ jobs:
           with:
             java-version: ${{ env.JAVA_VERSION }}
             distribution: 'temurin'
-            chace: 'maven'
+            cache: 'maven'
         - name: "trigger build"
           run: |
             echo "Building $WORKFLOW_NAME - $JOB_NAME ....."
