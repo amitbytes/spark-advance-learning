@@ -22,7 +22,7 @@ jobs:
         - name: "Java sdk seutp"
           uses: actions/setup-java@v4
           with:
-            java-version: '11'
+            java-version: ${{ env.JAVA_VERSION }}
             distribution: 'temurin'
             chace: 'maven'
         - name: "trigger build"
