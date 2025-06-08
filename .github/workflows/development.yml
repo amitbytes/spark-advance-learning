@@ -25,8 +25,10 @@ jobs:
             java-version: '11'
             distribution: 'temurin'
             chace: 'maven'
-        - name: "trigger build for $WORKFLOW_NAME $JOB_NAME"
-          run: mvn -B clean package -DskipTests --file pom.xml
+        - name: "trigger build"
+          run: |
+            echo "Building $WORKFLOW_NAME - $JOB_NAME ....."
+            mvn -B clean package -DskipTests --file pom.xml
         - name: "Upload build artifacts"
           uses: actions/upload-artifact@v4
           with:
