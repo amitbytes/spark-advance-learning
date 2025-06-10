@@ -1,5 +1,5 @@
 name: environment workflow learning
-run-name: "envrionment workflow learning - ${{ github.event.inputs.target-environment }}"
+run-name: "envrionment workflow learning - environment ${{ github.event.inputs.target-environment }}"
 on:
   workflow_dispatch:
     inputs:
