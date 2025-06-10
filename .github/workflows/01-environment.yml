@@ -7,7 +7,7 @@ on:
             description: 'Target environment for deployment'
             required: true
             default: 'dev'
-            type: string
+            type: environment
 jobs:
     build:
         name: Build
