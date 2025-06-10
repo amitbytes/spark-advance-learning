@@ -1,0 +1,19 @@
+name: environment workflow learning
+run-name: "envrionment workflow learning - ${{ github.event.inputs.target-environment }}"
+on:
+  workflow_dispatch:
+    inputs:
+        target-environment:
+            description: 'Target environment for deployment'
+            required: true
+            default: 'dev'
+            type: string
+jobs:
+    build:
+        name: Build
+        runs-on: ubuntu-latest
+        environment: ${{ github.event.inputs.target-environment }}
+        steps:
+            - name: Checkout code
+              run: |
+                echo 'Checking out code... for ${{vars.PROJECT_NAME || 'default-project-name'}}'
