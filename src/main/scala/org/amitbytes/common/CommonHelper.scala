@@ -1,7 +1,7 @@
 package org.amitbytes.common
 
 import org.apache.spark.sql.types.StructType
-import org.apache.spark.sql.{DataFrame, Row, SparkSession}
+import org.apache.spark.sql.{DataFrame, Row, SaveMode, SparkSession}
 
 import java.sql.{Connection, PreparedStatement}
 import java.util.Properties
@@ -9,22 +9,30 @@ import java.util.Properties
 object CommonHelper {
   private def getSqlServerConnectionProperties() : Properties= {
     val connectionProperties = new Properties()
-    connectionProperties.setProperty("jdbcSqlServerUrl", "jdbc:sqlserver://your_server.database.windows.net:1433;database=your_database")
-    connectionProperties.setProperty("user", "your_username")
-    connectionProperties.setProperty("password", "your_password")
-    connectionProperties.setProperty("driver", "com.microsoft.sqlserver.jdbc.SQLServerDriver")
+    connectionProperties.setProperty("jdbcMySqlUrl", "jdbc:mysql://localhost:3306/classicmodels")
+    connectionProperties.setProperty("user", "root")
+    connectionProperties.setProperty("password", "admin@123")
+    connectionProperties.setProperty("driver", "com.mysql.cj.jdbc.Driver")
     connectionProperties
   }
   def readSqlData(sqlQuery: String)(implicit spark: SparkSession): DataFrame = {
     val connectionProperties = getSqlServerConnectionProperties()
-    spark.read.jdbc(connectionProperties.getProperty("jdbcSqlServerUrl"), s"($sqlQuery) as subquery", connectionProperties)
+    spark.read.jdbc(connectionProperties.getProperty("jdbcMySqlUrl"), s"($sqlQuery) as subquery", connectionProperties)
   }
-  def writeSqlData(df:DataFrame, tableName:String)(implicit spark: SparkSession): Unit = {
+  def writeSqlData(df:DataFrame, tableName:String, saveMode: SaveMode): Unit = {
     if(df.isEmpty){
       throw new IllegalArgumentException("DataFrame is empty. Cannot write to SQL Server.")
     }
     val connectionProperties = getSqlServerConnectionProperties()
-    df.write.mode("append").jdbc(connectionProperties.getProperty("jdbcSqlServerUrl"), tableName, connectionProperties)
+    df.write.mode(saveMode).jdbc(connectionProperties.getProperty("jdbcSqlServerUrl"), tableName, connectionProperties)
+  }
+  def writeSqlData(df:DataFrame, targetDb: String, tableName:String, saveMode: SaveMode): Unit = {
+    if(df.isEmpty){
+      throw new IllegalArgumentException("DataFrame is empty. Cannot write to SQL Server.")
+    }
+    val connectionProperties = getSqlServerConnectionProperties()
+    val jdbUrl=s"jdbc:mysql://localhost:3306/${targetDb}"
+    df.write.mode(saveMode).jdbc(jdbUrl, tableName, connectionProperties)
   }
   def createEmptyDataFrame(schema: StructType)(implicit spark: SparkSession): DataFrame = {
     spark.createDataFrame(spark.sparkContext.emptyRDD[Row],schema)

@@ -5,36 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a216915-8d57-474e-9a8f-2c2bb2c3239e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.agent.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.edit.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/input/csvs/dataclean.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/input/csvs/emp.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/input/csvs/users.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/input/files/words.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/input/json/nested.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/input/json/people.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/input/json/sports.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/input/json/students.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/log4j.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/common/CommonHelper.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/exention/methods/IntExtneionMethods.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/filequestions/DataCleanAnalysis.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/filequestions/NestedJsonExample.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/filequestions/SalesDataAnalysis.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/filequestions/ScalaLearning.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/filequestions/WordFrequencyCount.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/transformtions/BaseTransformation.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/transformtions/CustomCityTransforamtion.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/transformtions/CustomTransformation.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/transformtions/DefaultTransformation.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/transformtions/TransformationFactory.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/01-environment.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/01-environment.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/production_demployment.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/production_demployment.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/org/amitbytes/common/CommonHelper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/common/CommonHelper.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/org/amitbytes/etl/App.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/etl/App.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -147,7 +120,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
