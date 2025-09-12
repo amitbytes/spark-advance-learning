@@ -25,3 +25,4 @@ jobs:
           run: "echo 'Testing Spark Application...'"
         - name: "Post test action"
           run: "echo '${{ toJson(github) }}'"
+          

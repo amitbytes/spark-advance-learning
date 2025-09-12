@@ -16,4 +16,4 @@ jobs:
         steps:
             - name: Checkout code
               run: |
-                echo 'Checking out code... for ${{vars.PROJECT_NAME || 'default-project-name'}}'
+                echo "Checking out code... for ${{ env.PROJECT_NAME != '' && env.PROJECT_NAME || 'default-project-name' }}"

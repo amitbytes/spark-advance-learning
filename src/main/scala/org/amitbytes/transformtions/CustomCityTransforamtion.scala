@@ -1,12 +1,11 @@
 package org.amitbytes.transformtions
-
-class CustomEmailTransforamtion extends BaseTransformation with CurrentTransformationLogger {
-  override def runTransformation(df: org.apache.spark.sql.DataFrame)(implicit spark: org.apache.spark.sql.SparkSession): org.apache.spark.sql.DataFrame = {
+import  org.apache.spark.sql.{SparkSession, DataFrame}
+sealed class CustomCityTransforamtion extends BaseTransformation with CurrentTransformationLogger {
+  override def runTransformation(df: DataFrame)(implicit spark: SparkSession): DataFrame = {
     logCurrentTransformation("CustomEmailTransforamtion")
     import org.apache.spark.sql.functions._
-    df.withColumn("email", concat(col("first_name"), lit("."), col("last_name"), lit("@example.com")))
+    df.withColumn("city", lit("Ahmedabad"))
   }
   override def logCurrentTransformation(transformationName: String): Unit = println(s"Transformation log: ${this.transformationName}")
-  override val transformationName: String = "CustomEmailTransforamtion is in progress"
-
+  override val transformationName: String = "CustomCityTransforamtion is in progress"
 }

@@ -4,7 +4,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8a216915-8d57-474e-9a8f-2c2bb2c3239e" name="Changes" comment="" />
+    <list default="true" id="8a216915-8d57-474e-9a8f-2c2bb2c3239e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.agent.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/copilot.data.migration.edit.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input/csvs/dataclean.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input/csvs/emp.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input/csvs/users.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input/files/words.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input/json/nested.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input/json/people.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input/json/sports.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input/json/students.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/log4j.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/common/CommonHelper.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/exention/methods/IntExtneionMethods.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/filequestions/DataCleanAnalysis.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/filequestions/NestedJsonExample.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/filequestions/SalesDataAnalysis.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/filequestions/ScalaLearning.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/filequestions/WordFrequencyCount.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/transformtions/BaseTransformation.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/transformtions/CustomCityTransforamtion.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/transformtions/CustomTransformation.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/transformtions/DefaultTransformation.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/transformtions/TransformationFactory.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/01-environment.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/01-environment.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/production_demployment.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/production_demployment.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/org/amitbytes/etl/App.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/etl/App.scala" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,22 +63,31 @@
   "keyToString": {
     "Application.App.executor": "Run",
     "Application.Application.executor": "Run",
+    "Application.ScalaApp.executor": "Run",
     "Maven.spark-advance-learning [clean].executor": "Run",
     "Maven.spark-advance-learning [compile].executor": "Run",
     "Maven.spark-advance-learning [install].executor": "Run",
     "Maven.spark-advance-learning [package].executor": "Run",
     "Maven.spark-advance-learning [validate].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/learning_projects/spark-advance-learning/input/csvs",
     "onboarding.tips.debug.path": "D:/learning_projects/spark-advance-learning/src/main/java/org/amitbytes/etl/Main.java",
-    "project.structure.last.edited": "Problems",
+    "project.structure.last.edited": "Global Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.34463277",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\learning_projects\spark-advance-learning\input\csvs" />
+      <recent name="D:\learning_projects\spark-advance-learning\input\csvs\orders" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration default="true" type="AZURE_FUNCTION_SUPPORT" factoryName="Run Functions">
       <option name="appName" />
@@ -98,6 +139,9 @@
     </task>
     <servers />
   </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.csv" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -116,6 +160,11 @@
           <url>file://$PROJECT_DIR$/src/main/scala/org/amitbytes/etl/Main.java</url>
           <line>13</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/src/main/scala/org/amitbytes/filequestions/ScalaLearning.scala</url>
+          <line>11</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -1,0 +1,9 @@
+[
+  {
+    "name": "Alice",
+    "activities": [
+      {"type": "sports", "name": "cycling"},
+      {"type": "leisure", "name": "reading"}
+    ]
+  }
+]
