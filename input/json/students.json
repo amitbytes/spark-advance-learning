@@ -1,0 +1,5 @@
+[
+  {"name": "Amit", "scores": {"maths": 85, "science": 90}},
+  {"name": "Bina", "scores": {"maths": 78, "science": 88}},
+  {"name": "Chetan", "scores": {"maths": 92, "science": 95}}
+]
