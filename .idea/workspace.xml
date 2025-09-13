@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a216915-8d57-474e-9a8f-2c2bb2c3239e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/common/Enums.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/common/JdbcConfigLoader.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spark.conf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/common/SparkConfigLoader.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/org/amitbytes/common/CommonHelper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/common/CommonHelper.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/org/amitbytes/etl/App.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/etl/App.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -64,6 +61,7 @@
       <recent name="D:\learning_projects\spark-advance-learning\input\csvs\orders" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\learning_projects\spark-advance-learning" />
       <recent name="D:\learning_projects\spark-advance-learning\src\main\resources" />
     </key>
   </component>
@@ -159,23 +157,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/org/amitbytes/etl/App.scala</url>
-          <line>13</line>
-          <option name="timeStamp" value="8" />
+          <line>14</line>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/main/scala/org/amitbytes/common/CommonHelper.scala</url>
-          <line>38</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/main/scala/org/amitbytes/common/CommonHelper.scala</url>
-          <line>58</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/main/scala/org/amitbytes/common/CommonHelper.scala</url>
-          <line>54</line>
-          <option name="timeStamp" value="15" />
+          <url>file://$PROJECT_DIR$/src/main/scala/org/amitbytes/common/SparkConfigLoader.scala</url>
+          <line>8</line>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
