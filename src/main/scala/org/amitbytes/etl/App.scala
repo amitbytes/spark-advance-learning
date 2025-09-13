@@ -1,7 +1,7 @@
 package org.amitbytes.etl
 import org.apache.spark.sql.{SaveMode, SparkSession, functions => F}
 import org.amitbytes.common
-import org.amitbytes.common.CommonHelper
+import org.amitbytes.common.{CommonHelper, DataBases}
 import org.apache.spark.sql.expressions.Window
 import org.amitbytes.transformtions.{BaseTransformation, TransformationFactory}
 import org.slf4j.LoggerFactory
@@ -26,8 +26,8 @@ object App {
       emp_df = emp_df.withColumn("name_gender",F.concat_ws(" ",$"name",$"gender"))
       val partition_window = Window.partitionBy($"department_id").orderBy($"salary".desc)
       emp_df.withColumn("rank",F.rank().over(partition_window)).filter(F.expr("rank=1")).show(false)*/
-      val customers_df = CommonHelper.readSqlData("select * from customers")
-      CommonHelper.writeSqlData(df=customers_df,targetDb = "tempdb", tableName = "customers", SaveMode.Overwrite)
+      val customers_df = CommonHelper.readSqlData("select * from customers", DataBases.CLASSICMODELS).withColumn("time_stamp", F.current_timestamp())
+      CommonHelper.writePartitionBatchSqlData(customers_df, DataBases.TEMPDB,"customers",10)
     } catch {
       case e: Exception =>
         println(e.getMessage)
