@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a216915-8d57-474e-9a8f-2c2bb2c3239e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/data/HikariCPDataSource.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/data/JdbcDatabaseHelpers.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/common/SparkSessionFactory.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spark.conf" beforeDir="false" afterPath="$PROJECT_DIR$/spark.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/org/amitbytes/common/CommonHelper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/common/CommonHelper.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/org/amitbytes/common/JdbcConfigLoader.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/common/JdbcConfigLoader.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/org/amitbytes/common/SparkConfigLoader.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/common/SparkConfigLoader.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/org/amitbytes/etl/App.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/etl/App.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

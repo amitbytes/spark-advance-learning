@@ -1,25 +1,22 @@
 package org.amitbytes.etl
 import org.apache.spark.sql.{SaveMode, SparkSession, functions => F}
 import org.amitbytes.common
-import org.amitbytes.common.{CommonHelper, DataBases, SparkConfigLoader}
+import org.amitbytes.common.{CommonHelper, DataBases, SparkConfigLoader, SparkSessionFactory}
 import org.apache.spark.sql.expressions.Window
 import org.amitbytes.transformtions.{BaseTransformation, TransformationFactory}
 import org.slf4j.LoggerFactory
 import org.amitbytes.filequestions.{DataCleanAnalysis, NestedJsonExample, SalesDataAnalysis, ScalaLearning, WordFrequencyCount}
 import org.amitbytes.data.JdbcDatabaseHelpers
 
+object App extends SparkSessionFactory {
 
-
-object App {
   def main(args: Array[String]): Unit = {
+
     val logger = LoggerFactory.getLogger(getClass)
-    implicit lazy val spark: SparkSession = SparkSession
-      .builder()
-      .config(SparkConfigLoader.getConfig) // Load spark configurations from spark.conf
-      .getOrCreate()
-    import spark.implicits._
+
     try {
       logger.info("Transformation started")
+      import spark.implicits._
       /*
       val schema ="employee_id STRING,department_id STRING,name STRING,age STRING,gender STRING,salary STRING,hire_date STRING"
       var emp_df = spark.read.format("csv").schema(schema).option("header","true").load("input/csvs/emp.csv")
@@ -37,10 +34,8 @@ object App {
         System.exit(1)
     }
     finally {
-      logger.info("Spark job completed")
-      //spark.stop()
+      scala.io.StdIn.readLine("Hit enter to exit")
+      spark.stop()
     }
-    scala.io.StdIn.readLine("Hit enter to exit")
-    spark.stop()
   }
 }
