@@ -1,6 +1,5 @@
 package org.amitbytes.common
 import org.apache.spark.SparkConf
-
 import java.util.Properties
 import scala.io.Source
 

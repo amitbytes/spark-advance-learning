@@ -6,8 +6,9 @@ import org.apache.spark.sql.expressions.Window
 import org.amitbytes.transformtions.{BaseTransformation, TransformationFactory}
 import org.slf4j.LoggerFactory
 import org.amitbytes.filequestions.{DataCleanAnalysis, NestedJsonExample, SalesDataAnalysis, ScalaLearning, WordFrequencyCount}
+import org.amitbytes.data.JdbcDatabaseHelpers
 
-import scala.io.Source
+
 
 object App {
   def main(args: Array[String]): Unit = {
@@ -25,9 +26,10 @@ object App {
       emp_df = emp_df.withColumn("name_gender",F.concat_ws(" ",$"name",$"gender"))
       val partition_window = Window.partitionBy($"department_id").orderBy($"salary".desc)
       emp_df.withColumn("rank",F.rank().over(partition_window)).filter(F.expr("rank=1")).show(false)*/
-      var customers_df = CommonHelper.readSqlData("select * from customers", DataBases.CLASSICMODELS).withColumn("time_stamp", F.current_timestamp())
+      val jdbcDatabaseHelpers = new JdbcDatabaseHelpers()
+      var customers_df = jdbcDatabaseHelpers.readSqlData("select * from customers", DataBases.CLASSICMODELS).withColumn("time_stamp", F.current_timestamp())
       customers_df = customers_df.repartition(3)
-      CommonHelper.writePartitionBatchSqlData(customers_df, DataBases.TEMPDB,"customers",10)
+      jdbcDatabaseHelpers.writePartitionBatchSqlData(customers_df, DataBases.TEMPDB,"customers",10)
     } catch {
       case e: Exception =>
         println(e.getMessage)

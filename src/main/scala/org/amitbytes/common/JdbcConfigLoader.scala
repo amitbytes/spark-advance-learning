@@ -18,7 +18,7 @@ case class JdbcSettings(
     props
   }
 }
-object JdbcConfigLoader {
+object JdbcConfigLoader extends Serializable {
   private val config: Config = ConfigFactory.load() // loads application.conf
   def loadDb(dataBases: DataBases): JdbcSettings = {
     val dbConfig = config.getConfig(s"jdbc.${dataBases.toString.toLowerCase()}")
