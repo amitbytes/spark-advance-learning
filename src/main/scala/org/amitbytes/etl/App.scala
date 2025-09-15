@@ -24,9 +24,19 @@ object App extends SparkSessionFactory {
       val partition_window = Window.partitionBy($"department_id").orderBy($"salary".desc)
       emp_df.withColumn("rank",F.rank().over(partition_window)).filter(F.expr("rank=1")).show(false)*/
       val jdbcDatabaseHelpers = new JdbcDatabaseHelpers()
-      var customers_df = jdbcDatabaseHelpers.readSqlData("select * from customers", DataBases.CLASSICMODELS).withColumn("time_stamp", F.current_timestamp())
+      var customers_df = jdbcDatabaseHelpers.readSqlData("select * from customers", DataBases.CLASSICMODELS)
+      customers_df.cache()
+      println(f"Total data count: ${customers_df.count()}")
+      jdbcDatabaseHelpers.writeSqlData(customers_df.limit(1), DataBases.TEMPDB,"customers",SaveMode.Overwrite)
       customers_df = customers_df.repartition(3)
       jdbcDatabaseHelpers.writePartitionBatchSqlData(customers_df, DataBases.TEMPDB,"customers",10)
+      customers_df.unpersist()
+
+
+
+      /*
+      * --class org.amitbytes.etl.App --jars s3://emr-serverless-learning-studio/jarfiles/mysql-connector-j-8.0.33.jar,s3://emr-serverless-learning-studio/jarfiles/HikariCP-7.0.2.jar,s3://emr-serverless-learning-studio/jarfiles/config-1.4.3.jar --files s3://emr-serverless-learning-studio/appfiles/application.conf,s3://emr-serverless-learning-studio/appfiles/spark.conf --conf spark.hadoop.hive.metastore.client.factory.class=com.amazonaws.glue.catalog.metastore.AWSGlueDataCatalogHiveClientFactory
+      * */
     } catch {
       case e: Exception =>
         println(e.getMessage)
@@ -34,7 +44,7 @@ object App extends SparkSessionFactory {
         System.exit(1)
     }
     finally {
-      scala.io.StdIn.readLine("Hit enter to exit")
+      //scala.io.StdIn.readLine("Hit enter to exit")
       spark.stop()
     }
   }

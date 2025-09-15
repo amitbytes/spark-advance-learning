@@ -1,5 +1,7 @@
 package org.amitbytes.exention.methods
 
+import org.apache.spark.sql.DataFrame
+
 object AllExtensionMethdods{
   implicit class StringExtneionMethods(val s: String) extends AnyVal {
     def ToInteger(): Int = {
@@ -15,6 +17,14 @@ object AllExtensionMethdods{
       } catch {
         case _: Exception => 0.0
       }
+    }
+  }
+}
+object DataFrameImplicits {
+  implicit class RichDataFrame(df: DataFrame) {
+    def printSchemaAndCount(): Unit = {
+      df.printSchema()
+      println(df.count())
     }
   }
 }
