@@ -1,7 +1,6 @@
 package org.amitbytes.common
 import com.typesafe.config.{Config, ConfigFactory}
 import org.amitbytes.common.DataBases.DataBases
-
 import java.io.File
 import java.util.Properties
 
@@ -19,6 +18,7 @@ case class JdbcSettings(
     props
   }
 }
+
 object JdbcConfigLoader extends Serializable {
   private val config: Config = ConfigFactory.parseFile(new File("application.conf")).resolve() // loads application.conf
   def loadDb(dataBases: DataBases): JdbcSettings = {
