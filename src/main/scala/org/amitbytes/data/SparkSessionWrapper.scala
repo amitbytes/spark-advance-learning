@@ -6,14 +6,17 @@ import org.apache.spark.sql.{DataFrame, SaveMode, SparkSession}
 
 import java.sql.{Connection, DriverManager, PreparedStatement, SQLException}
 
-sealed class JdbcDatabaseHelpers(implicit val spark: SparkSession) {
+object SparkSessionWrapper {
+  def apply()(implicit spark: SparkSession): SparkSessionWrapper = new SparkSessionWrapper()
+}
+sealed class SparkSessionWrapper(implicit val spark: SparkSession) {
 
-  def readSqlData(sqlQuery: String, dataBases: DataBases)(implicit spark: SparkSession): DataFrame = {
+  def readSqlData(sqlQuery: String, dataBases: DataBases): DataFrame = {
     val jdbcSettings: JdbcSettings = JdbcConfigLoader.loadDb(dataBases)
     spark.read.jdbc(jdbcSettings.url, s"($sqlQuery) as subquery", jdbcSettings.toProperties)
   }
 
-  def readSqlDataByPartition(sqlQuery: String, dataBases: DataBases, partitionColumn: String, lowerBound: Long, upperBound: Long, numPartitions: Int)(implicit spark: SparkSession): DataFrame = {
+  def readSqlDataByPartition(sqlQuery: String, dataBases: DataBases, partitionColumn: String, lowerBound: Long, upperBound: Long, numPartitions: Int): DataFrame = {
     val jdbcSettings: JdbcSettings = JdbcConfigLoader.loadDb(dataBases)
     spark.read.jdbc(jdbcSettings.url, s"($sqlQuery) as subquery", partitionColumn, lowerBound, upperBound, numPartitions, jdbcSettings.toProperties)
   }
