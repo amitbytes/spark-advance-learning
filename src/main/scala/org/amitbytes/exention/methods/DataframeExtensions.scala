@@ -100,6 +100,48 @@ object DataframeExtensions {
       if (df.head(1).isEmpty) null.asInstanceOf[T] else df.head(1).head.asInstanceOf[T]
     }
     /*
+     * save dataframe as table
+     * @param tableName name of the table
+     * @param saveMode save mode (Append, Overwrite, Ignore, ErrorIfExists)
+     * */
+    def saveAsTable(tableName: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
+      df.write.format("delta").mode(saveMode).saveAsTable(tableName)
+    }
+    def saveAsExternalTable(tableName: String, path: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
+      saveAsDeltaExternalTable(tableName, path, saveMode)
+    }
+    def saveAsDeltaTable(tableName: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
+      df.saveAsTable(tableName, saveMode)
+    }
+    def saveAsDeltaExternalTable(tableName: String, path: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
+      df.write.format("delta").mode(saveMode).option("path", path).saveAsTable(tableName)
+    }
+    def saveAsParquetTable(tableName: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
+      df.write.format("parquet").mode(saveMode).saveAsTable(tableName)
+    }
+    def saveAsParquetExternalTable(tableName: String, path: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
+      df.write.format("parquet").mode(saveMode).option("path", path).saveAsTable(tableName)
+    }
+    def saveAsCsvTable(tableName: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
+      df.write.format("csv").mode(saveMode).option("header", "true").saveAsTable(tableName)
+    }
+    def saveAsCsvExternalTable(tableName: String, path: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
+      df.write.format("csv").mode(saveMode).option("header", "true").option("path", path).saveAsTable(tableName)
+    }
+    def saveAsJsonTable(tableName: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
+      df.write.format("json").mode(saveMode).saveAsTable(tableName)
+    }
+    def saveAsJsonExternalTable(tableName: String, path: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
+      df.write.format("json").mode(saveMode).option("path", path).saveAsTable(tableName)
+    }
+
+    def saveAsAvroTable(tableName: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
+      df.write.format("avro").mode(saveMode).saveAsTable(tableName)
+    }
+    def saveAsAvroExternalTable(tableName: String, path: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
+      df.write.format("avro").mode(saveMode).option("path", path).saveAsTable(tableName)
+    }
+    /*
      * cache dataframe and create temp view
      * @param tempViewName name of the temp view
      * @param isGlobal if true create global temp view else create temp view
