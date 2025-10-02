@@ -9,6 +9,7 @@ import java.sql.{Connection, DriverManager, PreparedStatement, SQLException}
 object SparkSessionWrapper {
   def apply()(implicit spark: SparkSession): SparkSessionWrapper = new SparkSessionWrapper()
 }
+
 sealed class SparkSessionWrapper(implicit val spark: SparkSession) {
 
   def readSqlData(sqlQuery: String, dataBases: DataBases): DataFrame = {
