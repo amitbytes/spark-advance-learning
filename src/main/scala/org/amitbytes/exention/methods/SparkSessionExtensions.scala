@@ -3,7 +3,7 @@ package org.amitbytes.exention.methods
 import org.amitbytes.common.DatabasesEnum.DataBases
 import org.amitbytes.common.JdbcConfigLoader
 import org.apache.spark.sql.{DataFrame, SparkSession, Row}
-org.apache.spark.sql.types.StructType
+import org.apache.spark.sql.types.StructType
 import org.joda.time.DateTime
 import java.text.SimpleDateFormat
 

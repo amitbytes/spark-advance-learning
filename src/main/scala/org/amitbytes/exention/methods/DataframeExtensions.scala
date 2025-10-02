@@ -36,13 +36,13 @@ object DataframeExtensions {
      * @param numRows number of rows to show
      * @param truncate if true truncate the data else show full data
      * */
-    def DisplayData(numRows: Int = 20, truncate: Boolean = false): Unit = {
+    def displayData(numRows: Int = 20, truncate: Boolean = false): Unit = {
       df.show(numRows, truncate)
     }
     /*
      * show full data of the dataframe
      * */
-    def DisplayData(): Unit = {
+    def displayData(): Unit = {
       df.show(false)
     }
     /*

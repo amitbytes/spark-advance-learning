@@ -27,7 +27,7 @@ object App extends SparkSessionFactory {
       val schema ="employee_id STRING,department_id STRING,name STRING,age STRING,gender STRING,salary STRING,hire_date STRING"
       var emp_df = spark.read.format("csv").schema(schema).option("header","true").load("input/csvs/emp.csv")
       emp_df = emp_df.withColumn("name_gender",F.concat_ws(" ",$"name",$"gender"))
-      
+      emp_df.displayData();
 
       logger.info("Transformation completed")
       /*
