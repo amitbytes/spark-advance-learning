@@ -307,7 +307,54 @@ object DataframeExtensions {
      * @param tableName table to write data
      * @param batchSize number of rows to write at a time
      * */
-    def writeSqlDataForEachPartition(database: DataBases, tableName: String, batchSize: Int = DEFAULT_BATCH_SIZE): Unit = {
+    def insertInToSqlByEachPartition(database: DataBases, tableName: String, batchSize: Int = DEFAULT_BATCH_SIZE): Unit = {
+      var connection: Connection = null
+      var preparedStatement: PreparedStatement = null
+
+      try {
+        val columns = df.columns
+        val insertQuery = s"INSERT INTO $tableName (${columns.mkString(",")}) VALUES (${columns.map(_ => "?").mkString(",")})"
+
+        // Use foreachPartition to write data in batches per partition
+        df.foreachPartition { partition: Iterator[org.apache.spark.sql.Row] => {
+
+          val hikariCpDataSource = HikariCPDataSource.getDataSource(database) // Initialize HikariCP connection pool
+          connection = hikariCpDataSource.getConnection()
+          connection.setAutoCommit(false)
+          preparedStatement = connection.prepareStatement(insertQuery)
+          var count = 0
+          partition.foreach(row => {
+            for (i <- 1 to columns.length) {
+              preparedStatement.setObject(i, row.getAs(columns(i - 1)))
+            }
+            preparedStatement.addBatch()
+            count += 1
+            if (count % batchSize == 0) {
+              preparedStatement.executeBatch()
+              connection.commit()
+            }
+          })
+          if (count % batchSize != 0) {
+            preparedStatement.executeBatch()
+            connection.commit()
+          }
+        }
+        }
+      }
+      catch {
+        case e: SQLException => {
+          println(e.getMessage)
+          throw e
+        }
+      }
+      finally {
+        if (preparedStatement != null) preparedStatement.close()
+        if (connection != null) connection.close()
+      }
+    }
+
+    //TODO: will coorect these mthod insert/update make common code under the hood and align methods accordingly
+    def updateInToSqlByEachPartition(database: DataBases, tableName: String, batchSize: Int = DEFAULT_BATCH_SIZE): Unit = {
       var connection: Connection = null
       var preparedStatement: PreparedStatement = null
 
