@@ -36,13 +36,13 @@ object DataframeExtensions {
      * @param numRows number of rows to show
      * @param truncate if true truncate the data else show full data
      * */
-    def showData(numRows: Int = 20, truncate: Boolean = false): Unit = {
+    def DisplayData(numRows: Int = 20, truncate: Boolean = false): Unit = {
       df.show(numRows, truncate)
     }
     /*
      * show full data of the dataframe
      * */
-    def showData(): Unit = {
+    def DisplayData(): Unit = {
       df.show(false)
     }
     /*
@@ -107,37 +107,97 @@ object DataframeExtensions {
     def saveAsTable(tableName: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
       df.write.format("delta").mode(saveMode).saveAsTable(tableName)
     }
+    /*
+     * save dataframe as external table
+     * @param tableName name of the table
+     * @param path path to save the table
+     * @param saveMode save mode (Append, Overwrite, Ignore, ErrorIfExists)
+     * */
     def saveAsExternalTable(tableName: String, path: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
       saveAsDeltaExternalTable(tableName, path, saveMode)
     }
+    /*
+     * save dataframe as delta table
+     * @param tableName name of the table
+     * @param saveMode save mode (Append, Overwrite, Ignore, ErrorIfExists)
+     * */
     def saveAsDeltaTable(tableName: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
       df.saveAsTable(tableName, saveMode)
     }
+    /*
+     * save dataframe as delta external table
+     * @param tableName name of the table
+     * @param path path to save the table
+     * @param saveMode save mode (Append, Overwrite, Ignore, ErrorIfExists)
+     * */
     def saveAsDeltaExternalTable(tableName: String, path: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
       df.write.format("delta").mode(saveMode).option("path", path).saveAsTable(tableName)
     }
+    /*
+     * save dataframe as parquet table
+     * @param tableName name of the table
+     * @param saveMode save mode (Append, Overwrite, Ignore, ErrorIfExists)
+     * */
     def saveAsParquetTable(tableName: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
       df.write.format("parquet").mode(saveMode).saveAsTable(tableName)
     }
+    /*
+     * save dataframe as parquet external table
+     * @param tableName name of the table
+     * @param path path to save the table
+     * @param saveMode save mode (Append, Overwrite, Ignore, ErrorIfExists)
+     * */
     def saveAsParquetExternalTable(tableName: String, path: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
       df.write.format("parquet").mode(saveMode).option("path", path).saveAsTable(tableName)
     }
+    /*
+     * save dataframe as csv table
+     * @param tableName name of the table
+     * @param saveMode save mode (Append, Overwrite, Ignore, ErrorIfExists)
+     * */
     def saveAsCsvTable(tableName: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
       df.write.format("csv").mode(saveMode).option("header", "true").saveAsTable(tableName)
     }
+    /*
+     * save dataframe as csv external table
+     * @param tableName name of the table
+     * @param path path to save the table
+     * @param saveMode save mode (Append, Overwrite, Ignore, ErrorIfExists)
+     * */
     def saveAsCsvExternalTable(tableName: String, path: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
       df.write.format("csv").mode(saveMode).option("header", "true").option("path", path).saveAsTable(tableName)
     }
+    /*
+     * save dataframe as json table
+     * @param tableName name of the table
+     * @param saveMode save mode (Append, Overwrite, Ignore, ErrorIfExists)
+     * */
     def saveAsJsonTable(tableName: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
       df.write.format("json").mode(saveMode).saveAsTable(tableName)
     }
+    /*
+     * save dataframe as json external table
+     * @param tableName name of the table
+     * @param path path to save the table
+     * @param saveMode save mode (Append, Overwrite, Ignore, ErrorIfExists)
+     * */
     def saveAsJsonExternalTable(tableName: String, path: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
       df.write.format("json").mode(saveMode).option("path", path).saveAsTable(tableName)
     }
-
+    /*
+     * save dataframe as avro table
+     * @param tableName name of the table
+     * @param saveMode save mode (Append, Overwrite, Ignore, ErrorIfExists)
+     * */
     def saveAsAvroTable(tableName: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
       df.write.format("avro").mode(saveMode).saveAsTable(tableName)
     }
+    /*
+     * save dataframe as avro external table
+     * @param tableName name of the table
+     * @param path path to save the table
+     * @param saveMode save mode (Append, Overwrite, Ignore, ErrorIfExists)
+     * */
     def saveAsAvroExternalTable(tableName: String, path: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
       df.write.format("avro").mode(saveMode).option("path", path).saveAsTable(tableName)
     }

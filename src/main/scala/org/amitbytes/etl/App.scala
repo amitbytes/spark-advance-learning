@@ -27,12 +27,8 @@ object App extends SparkSessionFactory {
       val schema ="employee_id STRING,department_id STRING,name STRING,age STRING,gender STRING,salary STRING,hire_date STRING"
       var emp_df = spark.read.format("csv").schema(schema).option("header","true").load("input/csvs/emp.csv")
       emp_df = emp_df.withColumn("name_gender",F.concat_ws(" ",$"name",$"gender"))
-      emp_df = spark.createEmptyDataFrame(schema)
-      if(!emp_df.isEmpty()){
-        println("Dataframe is not empty")
-      }else{
-        println("Dataframe is empty")
-      }
+      
+
       logger.info("Transformation completed")
       /*
       * --class org.amitbytes.etl.App --jars s3://emr-serverless-learning-studio/jarfiles/mysql-connector-j-8.0.33.jar,s3://emr-serverless-learning-studio/jarfiles/HikariCP-7.0.2.jar,s3://emr-serverless-learning-studio/jarfiles/config-1.4.3.jar --files s3://emr-serverless-learning-studio/appfiles/application.conf,s3://emr-serverless-learning-studio/appfiles/spark.conf --conf spark.hadoop.hive.metastore.client.factory.class=com.amazonaws.glue.catalog.metastore.AWSGlueDataCatalogHiveClientFactory

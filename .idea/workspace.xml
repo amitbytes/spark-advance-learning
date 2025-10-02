@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a216915-8d57-474e-9a8f-2c2bb2c3239e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/org/amitbytes/exention/methods/DataframeExtensions.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/amitbytes/exention/methods/DataframeExtensions.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
