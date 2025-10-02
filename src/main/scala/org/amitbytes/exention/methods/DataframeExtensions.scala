@@ -31,6 +31,7 @@ object DataframeExtensions {
       println("Schema:")
       df.schema.treeString.split("\n").foreach(ln => println(s"  $ln"))
     }
+
     /*
      * show data of the dataframe
      * @param numRows number of rows to show
@@ -39,66 +40,77 @@ object DataframeExtensions {
     def displayData(numRows: Int = 20, truncate: Boolean = false): Unit = {
       df.show(numRows, truncate)
     }
+
     /*
      * show full data of the dataframe
      * */
     def displayData(): Unit = {
       df.show(false)
     }
+
     /*
      * check if dataframe is empty
      * */
     def isEmpty(): Boolean = {
       df.head(1).isEmpty
     }
+
     /*
      * get first row of the dataframe as different data types
      * */
     def getHeadInt(): Int = {
       if (df.head(1).isEmpty) 0 else df.head(1).head.getAs[Int](0)
     }
+
     /*
      * get first row of the dataframe as different data types
      * */
     def getHeadLong(): Long = {
       if (df.head(1).isEmpty) 0L else df.head(1).head.getAs[Long](0)
     }
+
     /*
      * get first row of the dataframe as different data types
      * */
     def getHeadString(): String = {
       if (df.head(1).isEmpty) "" else df.head(1).head.getAs[String](0)
     }
+
     /*
      * get first row of the dataframe as different data types
      * */
     def getHeadDouble(): Double = {
       if (df.head(1).isEmpty) 0.0 else df.head(1).head.getAs[Double](0)
     }
+
     /*
      * get first row of the dataframe as different data types
      * */
     def getHeadDateTime(): java.sql.Timestamp = {
       if (df.head(1).isEmpty) new java.sql.Timestamp(0) else df.head(1).head.getAs[java.sql.Timestamp](0)
     }
+
     /*
      * get first row of the dataframe as different data types
      * */
     def getHeadBoolean(): Boolean = {
       if (df.head(1).isEmpty) false else df.head(1).head.getAs[Boolean](0)
     }
+
     /*
      * get first row of the dataframe
      * */
     def getHeadRow(): Row = {
       if (df.head(1).isEmpty) null else df.head(1).head
     }
+
     /*
      * get first row of the dataframe as different data types
      * */
     def getHeadRowToType[T](): T = {
       if (df.head(1).isEmpty) null.asInstanceOf[T] else df.head(1).head.asInstanceOf[T]
     }
+
     /*
      * save dataframe as table
      * @param tableName name of the table
@@ -107,6 +119,7 @@ object DataframeExtensions {
     def saveAsTable(tableName: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
       df.write.format("delta").mode(saveMode).saveAsTable(tableName)
     }
+
     /*
      * save dataframe as external table
      * @param tableName name of the table
@@ -116,6 +129,7 @@ object DataframeExtensions {
     def saveAsExternalTable(tableName: String, path: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
       saveAsDeltaExternalTable(tableName, path, saveMode)
     }
+
     /*
      * save dataframe as delta table
      * @param tableName name of the table
@@ -124,6 +138,7 @@ object DataframeExtensions {
     def saveAsDeltaTable(tableName: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
       df.saveAsTable(tableName, saveMode)
     }
+
     /*
      * save dataframe as delta external table
      * @param tableName name of the table
@@ -133,6 +148,7 @@ object DataframeExtensions {
     def saveAsDeltaExternalTable(tableName: String, path: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
       df.write.format("delta").mode(saveMode).option("path", path).saveAsTable(tableName)
     }
+
     /*
      * save dataframe as parquet table
      * @param tableName name of the table
@@ -141,6 +157,17 @@ object DataframeExtensions {
     def saveAsParquetTable(tableName: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
       df.write.format("parquet").mode(saveMode).saveAsTable(tableName)
     }
+
+    /*
+    * save dataframe as parquet table with partition
+    * @tableName name of the table
+    * @partitionColumns columns to partition
+    * @saveMode save mode for table
+    * */
+    def saveAsParquetTableWithPartition(tableName: String, partitionColumns: Array[String], saveMode: SaveMode = SaveMode.Overwrite): Unit = {
+      df.write.format("parquet").partitionBy(partitionColumns: _*).mode(saveMode)
+    }
+
     /*
      * save dataframe as parquet external table
      * @param tableName name of the table
@@ -150,6 +177,17 @@ object DataframeExtensions {
     def saveAsParquetExternalTable(tableName: String, path: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
       df.write.format("parquet").mode(saveMode).option("path", path).saveAsTable(tableName)
     }
+
+    /*
+    * save dataframe as parquet external table
+    * @param tableName name of the table
+    * @param path path to save the table
+    * @param saveMode save mode (Append, Overwrite, Ignore, ErrorIfExists)
+    * */
+    def saveAsParquetExternaltableWithPartition(tableName: String, partitionColumns: Array[String], path: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
+      df.write.format("parquet").mode(saveMode).option("path", path).partitionBy(partitionColumns: _*).saveAsTable(tableName)
+    }
+
     /*
      * save dataframe as csv table
      * @param tableName name of the table
@@ -158,6 +196,7 @@ object DataframeExtensions {
     def saveAsCsvTable(tableName: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
       df.write.format("csv").mode(saveMode).option("header", "true").saveAsTable(tableName)
     }
+
     /*
      * save dataframe as csv external table
      * @param tableName name of the table
@@ -167,6 +206,7 @@ object DataframeExtensions {
     def saveAsCsvExternalTable(tableName: String, path: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
       df.write.format("csv").mode(saveMode).option("header", "true").option("path", path).saveAsTable(tableName)
     }
+
     /*
      * save dataframe as json table
      * @param tableName name of the table
@@ -175,6 +215,7 @@ object DataframeExtensions {
     def saveAsJsonTable(tableName: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
       df.write.format("json").mode(saveMode).saveAsTable(tableName)
     }
+
     /*
      * save dataframe as json external table
      * @param tableName name of the table
@@ -184,6 +225,7 @@ object DataframeExtensions {
     def saveAsJsonExternalTable(tableName: String, path: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
       df.write.format("json").mode(saveMode).option("path", path).saveAsTable(tableName)
     }
+
     /*
      * save dataframe as avro table
      * @param tableName name of the table
@@ -192,6 +234,7 @@ object DataframeExtensions {
     def saveAsAvroTable(tableName: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
       df.write.format("avro").mode(saveMode).saveAsTable(tableName)
     }
+
     /*
      * save dataframe as avro external table
      * @param tableName name of the table
@@ -201,6 +244,7 @@ object DataframeExtensions {
     def saveAsAvroExternalTable(tableName: String, path: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
       df.write.format("avro").mode(saveMode).option("path", path).saveAsTable(tableName)
     }
+
     /*
      * cache dataframe and create temp view
      * @param tempViewName name of the temp view
