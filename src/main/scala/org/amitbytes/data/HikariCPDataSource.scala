@@ -1,11 +1,11 @@
 package org.amitbytes.data
 import com.zaxxer.hikari.{HikariConfig, HikariDataSource}
-import org.amitbytes.common.DataBases.DataBases
-import org.amitbytes.common.{DataBases, JdbcConfigLoader}
+import org.amitbytes.common.DatabasesEnum.DataBases
+import org.amitbytes.common.{DatabasesEnum, JdbcConfigLoader}
 import java.util.concurrent.ConcurrentHashMap
 
 
-private[data] object HikariCPDataSource {
+object HikariCPDataSource {
   private val pools = new ConcurrentHashMap[DataBases, HikariDataSource]()
 
   def getDataSource(dataBases: DataBases) : HikariDataSource = {

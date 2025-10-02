@@ -1,6 +1,6 @@
 package org.amitbytes.data
 
-import org.amitbytes.common.DataBases.DataBases
+import org.amitbytes.common.DatabasesEnum.DataBases
 import org.amitbytes.common.{JdbcConfigLoader, JdbcSettings}
 import org.apache.spark.sql.{DataFrame, SaveMode, SparkSession}
 

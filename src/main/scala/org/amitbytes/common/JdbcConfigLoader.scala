@@ -1,6 +1,6 @@
 package org.amitbytes.common
 import com.typesafe.config.{Config, ConfigFactory}
-import org.amitbytes.common.DataBases.DataBases
+import org.amitbytes.common.DatabasesEnum.DataBases
 import java.io.File
 import java.util.Properties
 

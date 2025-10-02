@@ -1,6 +1,6 @@
 package org.amitbytes.common
 
-import org.amitbytes.common.DataBases.DataBases
+import org.amitbytes.common.DatabasesEnum.DataBases
 import org.apache.spark.sql.types.StructType
 import org.apache.spark.sql.{DataFrame, Row, SaveMode, SparkSession}
 

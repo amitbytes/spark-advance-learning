@@ -1,11 +1,14 @@
 package org.amitbytes.etl
 import org.apache.spark.sql.{SaveMode, SparkSession, functions => F}
-import org.amitbytes.common.{CommonHelper, DataBases, SparkConfigLoader, SparkSessionFactory}
+import org.amitbytes.common.{CommonHelper, DatabasesEnum, SparkConfigLoader, SparkSessionFactory}
 import org.apache.spark.sql.expressions.Window
 import org.amitbytes.transformtions.{BaseTransformation, TransformationFactory}
 import org.slf4j.LoggerFactory
+import org.amitbytes.exention.methods.{AllExtensionMethdods, DataFrameImplicits, SparkSessionExtensions}
 import org.amitbytes.filequestions.{DataCleanAnalysis, NestedJsonExample, SalesDataAnalysis, ScalaLearning, WordFrequencyCount}
 import org.amitbytes.data.SparkSessionWrapper
+import org.amitbytes.exention.methods.SparkSessionExtensions._
+import org.amitbytes.exention.methods.DataframeExtensions._
 
 object App extends SparkSessionFactory {
 
@@ -15,6 +18,7 @@ object App extends SparkSessionFactory {
 
     try {
       logger.info("Transformation started")
+      spark.printSparkVersion()
       import spark.implicits._
       /*
       val schema ="employee_id STRING,department_id STRING,name STRING,age STRING,gender STRING,salary STRING,hire_date STRING"
@@ -22,13 +26,14 @@ object App extends SparkSessionFactory {
       emp_df = emp_df.withColumn("name_gender",F.concat_ws(" ",$"name",$"gender"))
       val partition_window = Window.partitionBy($"department_id").orderBy($"salary".desc)
       emp_df.withColumn("rank",F.rank().over(partition_window)).filter(F.expr("rank=1")).show(false)*/
-      val sparkSessionWrapper = SparkSessionWrapper()
-      var customers_df = sparkSessionWrapper.readSqlData("select * from customers", DataBases.CLASSICMODELS)
+      //val sparkSessionWrapper = SparkSessionWrapper()
+      //var customers_df = sparkSessionWrapper.readSqlData("select * from customers", DataBases.CLASSICMODELS)
+      var customers_df = spark.readSqlData(sqlQuery = "Select * from customers",database = DatabasesEnum.CLASSICMODELS)
       customers_df.cache()
       println(f"Total data count: ${customers_df.count()}")
-      sparkSessionWrapper.writeSqlData(customers_df.limit(1), DataBases.TEMPDB,"customers",SaveMode.Overwrite)
+      //customers_df.writeSqlData(database = DatabasesEnum.TEMPDB,tableName = "customers",saveMode = SaveMode.Overwrite)
       customers_df = customers_df.repartition(3)
-      sparkSessionWrapper.writePartitionBatchSqlData(customers_df, DataBases.TEMPDB,"customers",10)
+      customers_df.writeSqlDataByPartition(database =DatabasesEnum.TEMPDB ,tableName = "customers",batchSize = 20)
       customers_df.unpersist()
       logger.info("Transformation completed")
       /*
