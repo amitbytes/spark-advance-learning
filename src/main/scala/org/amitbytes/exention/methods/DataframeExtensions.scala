@@ -117,9 +117,12 @@ object DataframeExtensions {
      * @param saveMode save mode (Append, Overwrite, Ignore, ErrorIfExists)
      * */
     def saveAsTable(tableName: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
-      df.write.format("delta").mode(saveMode).saveAsTable(tableName)
+      df.write.mode(saveMode).saveAsTable(tableName)
     }
 
+    def saveAsTableByPartition(tableName: String, partitionColumns: Array[String], saveMode: SaveMode=SaveMode.Overwrite): Unit = {
+      df.write.mode(saveMode).partitionBy(partitionColumns: _*).saveAsTable(tableName)
+    }
     /*
      * save dataframe as external table
      * @param tableName name of the table
@@ -127,7 +130,11 @@ object DataframeExtensions {
      * @param saveMode save mode (Append, Overwrite, Ignore, ErrorIfExists)
      * */
     def saveAsExternalTable(tableName: String, path: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
-      saveAsDeltaExternalTable(tableName, path, saveMode)
+      df.write.mode(saveMode).option("path", path).saveAsTable(tableName)
+    }
+
+    def saveAsExternalTableByPartition(tableName: String, path: String, partitionColumns: Array[String], saveMode: SaveMode=SaveMode.Overwrite): Unit = {
+      df.write.mode(saveMode).option("path", path).partitionBy(partitionColumns: _*).saveAsTable(tableName)
     }
 
     /*
@@ -136,7 +143,11 @@ object DataframeExtensions {
      * @param saveMode save mode (Append, Overwrite, Ignore, ErrorIfExists)
      * */
     def saveAsDeltaTable(tableName: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
-      df.saveAsTable(tableName, saveMode)
+      df.write.format("delta").mode(saveMode).saveAsTable(tableName)
+    }
+
+    def saveAsDeltaTableByPartition(tableName: String, partitionColumns: Array[String], saveMode: SaveMode=SaveMode.Overwrite): Unit ={
+      df.write.format("delta").mode(saveMode).partitionBy(partitionColumns: _*).saveAsTable(tableName)
     }
 
     /*
@@ -149,6 +160,9 @@ object DataframeExtensions {
       df.write.format("delta").mode(saveMode).option("path", path).saveAsTable(tableName)
     }
 
+    def saveAsDeltaExternalTableByPartition(tableName: String, path: String, partitionColumns: Array[String], saveMode: SaveMode = SaveMode.Overwrite): Unit = {
+      df.write.format("delta").mode(saveMode).option("path", path).partitionBy(partitionColumns: _*).saveAsTable(tableName)
+    }
     /*
      * save dataframe as parquet table
      * @param tableName name of the table
@@ -164,8 +178,8 @@ object DataframeExtensions {
     * @partitionColumns columns to partition
     * @saveMode save mode for table
     * */
-    def saveAsParquetTableWithPartition(tableName: String, partitionColumns: Array[String], saveMode: SaveMode = SaveMode.Overwrite): Unit = {
-      df.write.format("parquet").partitionBy(partitionColumns: _*).mode(saveMode)
+    def saveAsParquetTableByPartition(tableName: String, partitionColumns: Array[String], saveMode: SaveMode = SaveMode.Overwrite): Unit = {
+      df.write.format("parquet").mode(saveMode).partitionBy(partitionColumns: _*).saveAsTable(tableName)
     }
 
     /*
@@ -184,7 +198,7 @@ object DataframeExtensions {
     * @param path path to save the table
     * @param saveMode save mode (Append, Overwrite, Ignore, ErrorIfExists)
     * */
-    def saveAsParquetExternaltableWithPartition(tableName: String, partitionColumns: Array[String], path: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
+    def saveAsParquetExternalTableByPartition(tableName: String, partitionColumns: Array[String], path: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
       df.write.format("parquet").mode(saveMode).option("path", path).partitionBy(partitionColumns: _*).saveAsTable(tableName)
     }
 
@@ -197,6 +211,9 @@ object DataframeExtensions {
       df.write.format("csv").mode(saveMode).option("header", "true").saveAsTable(tableName)
     }
 
+    def saveAsCsvTableByPartition(tableName: String, partitionColumns: Array[String], saveMode: SaveMode=SaveMode.Overwrite): Unit= {
+      df.write.format("csv").mode(saveMode).partitionBy(partitionColumns: _*).option("header","true").saveAsTable(tableName)
+    }
     /*
      * save dataframe as csv external table
      * @param tableName name of the table
@@ -207,6 +224,9 @@ object DataframeExtensions {
       df.write.format("csv").mode(saveMode).option("header", "true").option("path", path).saveAsTable(tableName)
     }
 
+    def saveAsCsvExternalTableByPartition(tableName: String, partitionColumns: Array[String], path: String, saveMode: SaveMode=SaveMode.Overwrite): Unit = {
+      df.write.format("csv").mode(saveMode).partitionBy(partitionColumns: _*).option("path", path).saveAsTable(tableName)
+    }
     /*
      * save dataframe as json table
      * @param tableName name of the table
@@ -216,7 +236,12 @@ object DataframeExtensions {
       df.write.format("json").mode(saveMode).saveAsTable(tableName)
     }
 
+    def saveAsJsonTableByPartition(tableName: String, partitionColumns: Array[String], saveMode: SaveMode=SaveMode.Overwrite): Unit = {
+      df.write.format("json").mode(saveMode).partitionBy(partitionColumns: _*).saveAsTable(tableName)
+    }
+
     /*
+
      * save dataframe as json external table
      * @param tableName name of the table
      * @param path path to save the table
@@ -226,6 +251,9 @@ object DataframeExtensions {
       df.write.format("json").mode(saveMode).option("path", path).saveAsTable(tableName)
     }
 
+    def saveAsJsonExternalTableByPartition(tableName: String, partitionColumns: Array[String], path: String, saveMode: SaveMode=SaveMode.Overwrite): Unit = {
+      df.write.format("json").mode(saveMode).partitionBy(partitionColumns: _*).option("path", path).saveAsTable(tableName)
+    }
     /*
      * save dataframe as avro table
      * @param tableName name of the table
@@ -235,16 +263,22 @@ object DataframeExtensions {
       df.write.format("avro").mode(saveMode).saveAsTable(tableName)
     }
 
+    def saveAsAvroTableByPartition(tableName: String, partitionColumns: Array[String], saveMode: SaveMode = SaveMode.Overwrite): Unit ={
+      df.write.format("avro").mode(saveMode).partitionBy(partitionColumns: _*).saveAsTable(tableName)
+    }
     /*
      * save dataframe as avro external table
      * @param tableName name of the table
-     * @param path path to save the table
+     * @param path to save the table
      * @param saveMode save mode (Append, Overwrite, Ignore, ErrorIfExists)
      * */
     def saveAsAvroExternalTable(tableName: String, path: String, saveMode: SaveMode = SaveMode.Overwrite): Unit = {
       df.write.format("avro").mode(saveMode).option("path", path).saveAsTable(tableName)
     }
 
+    def saveAsAvroExternalTableByPartition(tableName: String, partitionColumns: Array[String], path: String, saveMode: SaveMode=SaveMode.Overwrite): Unit = {
+      df.write.format("avro").mode(saveMode).partitionBy(partitionColumns: _*).option("path", path).saveAsTable(tableName)
+    }
     /*
      * cache dataframe and create temp view
      * @param tempViewName name of the temp view
