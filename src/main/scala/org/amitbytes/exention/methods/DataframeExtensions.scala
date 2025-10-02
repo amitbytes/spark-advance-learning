@@ -307,7 +307,7 @@ object DataframeExtensions {
      * @param tableName table to write data
      * @param batchSize number of rows to write at a time
      * */
-    def writeSqlDataByPartition(database: DataBases, tableName: String, batchSize: Int = DEFAULT_BATCH_SIZE): Unit = {
+    def writeSqlDataForEachPartition(database: DataBases, tableName: String, batchSize: Int = DEFAULT_BATCH_SIZE): Unit = {
       var connection: Connection = null
       var preparedStatement: PreparedStatement = null
 
